@@ -1,0 +1,40 @@
+<div class="chat-container">
+  <div class="messages-area" #messagesContainer>
+
+    @if (messages.length === 0) {
+      <div class="empty-state">
+        <div class="empty-icon">
+          <mat-icon>psychology</mat-icon>
+        </div>
+        <h3>¿En qué puedo ayudarte?</h3>
+        <p>Consulta protocolos, normativas e historias clínicas de CoreVital.</p>
+      </div>
+    }
+
+    @for (msg of messages; track $index) {
+      <app-message [message]="msg" [userInitial]="userInitial"></app-message>
+    }
+
+    @if (loading) {
+      <div class="typing-row">
+        <div class="typing-avatar">
+          <img src="favicon.png" alt="CoreVital"
+               style="width: 20px; height: 20px; object-fit: contain;"
+               onerror="this.style.display='none'" />
+        </div>
+        <div class="typing-chip">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="typing-label">CoreVital está procesando...</span>
+        </div>
+        <button class="cancel-btn" (click)="cancelQuery()" title="Cancelar consulta">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    }
+
+  </div>
+
+  <app-query-input [loading]="loading" (querySubmit)="onQuery($event)"></app-query-input>
+</div>

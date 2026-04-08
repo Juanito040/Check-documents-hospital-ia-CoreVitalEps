@@ -1,0 +1,101 @@
+::ng-deep .confirm-dialog-panel .mat-mdc-dialog-container,
+::ng-deep .confirm-dialog-panel .mat-mdc-dialog-surface,
+::ng-deep .confirm-dialog-panel .mdc-dialog__surface {
+  border-radius: 12px !important;
+  background: #fff !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.confirm-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #fff;
+}
+
+.confirm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+  line-height: 1;
+  transition: color 0.15s, background 0.15s;
+}
+
+.close-btn:hover { color: #374151; background: #f3f4f6; }
+
+.message {
+  margin: 0 0 12px;
+  font-size: 0.875rem;
+  color: #4b5563;
+  line-height: 1.55;
+}
+
+.detail {
+  margin: 0 0 20px;
+  font-size: 0.8rem;
+  color: #6b7280;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 12px;
+  word-break: break-word;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.btn-cancel {
+  padding: 8px 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  color: #374151;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn-cancel:hover { background: #f9fafb; border-color: #9ca3af; }
+
+.btn-confirm {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+
+.btn-confirm.danger  { background: #dc2626; color: #fff; }
+.btn-confirm.warning { background: #d97706; color: #fff; }
+.btn-confirm.info    { background: #2563eb; color: #fff; }
+.btn-confirm:hover   { filter: brightness(1.08); }

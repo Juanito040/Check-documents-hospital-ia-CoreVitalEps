@@ -1,0 +1,139 @@
+.upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Selector categoría ── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 280px;
+}
+
+.field-group label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.field-group select {
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 0.875rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #111827;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 34px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
+}
+
+.field-group select:focus {
+  border-color: #0d59c3;
+  box-shadow: 0 0 0 3px rgba(13,89,195,0.08);
+}
+
+/* ── Drop zone ── */
+.drop-zone {
+  border: 1.5px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 32px 24px;
+  text-align: center;
+  background: #fafafa;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.drop-zone:hover {
+  border-color: #0d59c3;
+  background: #f5f8ff;
+}
+
+.drop-zone.drag-over {
+  border-color: #0d59c3;
+  background: #eff6ff;
+  box-shadow: 0 0 0 3px rgba(13,89,195,0.07);
+}
+
+.drop-zone.uploading {
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ── Texto zona ── */
+.drop-label {
+  margin: 0 0 12px;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* ── Botón seleccionar ── */
+.select-btn {
+  padding: 7px 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  color: #374151;
+  font-size: 0.82rem;
+  font-weight: 500;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.select-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.hint {
+  margin: 12px 0 0;
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* ── Progreso ── */
+.upload-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.upload-progress p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.progress-bar-track {
+  width: 200px;
+  height: 3px;
+  background: #e5e7eb;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 40%;
+  background: #0d59c3;
+  border-radius: 2px;
+  animation: progressSlide 1.4s ease-in-out infinite;
+}
+
+@keyframes progressSlide {
+  0%   { transform: translateX(-100%); width: 40%; }
+  50%  { width: 60%; }
+  100% { transform: translateX(300%); width: 40%; }
+}

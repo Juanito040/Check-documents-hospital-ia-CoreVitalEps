@@ -1,0 +1,110 @@
+<div class="login-root">
+
+  <!-- Panel izquierdo: marca -->
+  <div class="brand-panel">
+    <div class="brand-content">
+      <div class="brand-logo">
+        <img src="logo.png" alt="CoreVital"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" />
+        <mat-icon style="display:none">local_hospital</mat-icon>
+      </div>
+
+      <div class="brand-copy">
+        <p class="brand-headline">Encuentra lo que necesitas, cuando lo necesitas.</p>
+        <p class="brand-sub">Accede a la información de tu institución de forma rápida y confiable, sin perder tiempo buscando entre documentos.</p>
+         <div class="brand-copy"> </div>
+      </div>
+
+      <div class="brand-features">
+        <span>Respuestas inmediatas a tus consultas clínicas.</span>
+        <span>Información siempre actualizada y centralizada.</span>
+        <span>Diseñado para el ritmo del trabajo en salud.</span>
+      </div>
+    </div>
+    <span class="brand-footer">CoreVital · 2026 · JuanDevs</span>
+  </div>
+
+  <!-- Panel derecho: formulario -->
+  <div class="form-panel">
+    <div class="form-container">
+
+      <div class="form-header">
+        <h2>Crear cuenta</h2>
+        <p>Completa los datos para registrarte en el sistema.</p>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <div class="field-group">
+          <label for="nombre">Nombre completo</label>
+          <input
+            id="nombre"
+            type="text"
+            formControlName="nombre"
+            placeholder="Dr. Juan Pérez"
+            autocomplete="name"
+          />
+          @if (registerForm.get('nombre')?.hasError('required') && registerForm.get('nombre')?.touched) {
+            <span class="field-error">El nombre es requerido</span>
+          }
+        </div>
+
+        <div class="field-group">
+          <label for="email">Correo electrónico</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="nombre@corevital.com"
+            autocomplete="email"
+          />
+          @if (registerForm.get('email')?.hasError('email') && registerForm.get('email')?.touched) {
+            <span class="field-error">Correo electrónico inválido</span>
+          }
+        </div>
+
+        <div class="field-group">
+          <label for="password">Contraseña</label>
+          <div class="password-wrap">
+            <input
+              id="password"
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+              placeholder="Mínimo 6 caracteres"
+              autocomplete="new-password"
+            />
+            <button type="button" class="eye-btn" (click)="hidePassword = !hidePassword" tabindex="-1">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </div>
+          @if (registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.touched) {
+            <span class="field-error">Mínimo 6 caracteres</span>
+          }
+        </div>
+
+        @if (errorMessage) {
+          <div class="error-msg">{{ errorMessage }}</div>
+        }
+
+        @if (successMessage) {
+          <div class="success-msg">{{ successMessage }}</div>
+        }
+
+        <button type="submit" class="submit-btn" [disabled]="registerForm.invalid || loading">
+          @if (loading) {
+            <mat-spinner diameter="18"></mat-spinner>
+          } @else {
+            Crear cuenta
+          }
+        </button>
+
+      </form>
+
+      <p class="register-link">
+        ¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a>
+      </p>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,35 @@
+<div class="history-container">
+  <div class="history-header">
+ 
+    <h2>Historial de Consultas</h2>
+  </div>
+
+  @if (loading) {
+    <div class="loading"><mat-spinner diameter="40"></mat-spinner></div>
+  } @else if (history.length === 0) {
+    <div class="empty-state">
+      <mat-icon>find_in_page</mat-icon>
+      <p>No hay consultas registradas aún.</p>
+    </div>
+  } @else {
+    <mat-accordion>
+      @for (item of history; track item.id) {
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="panel-title">
+              <mat-icon>help_outline</mat-icon>
+              <span>{{ item.pregunta }}</span>
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ item.fecha | date:'dd/MM/yyyy HH:mm' }}
+              <span class="time-chip">{{ item.tiempo_respuesta_ms }}ms</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="answer-content">
+            <p>{{ item.respuesta }}</p>
+          </div>
+        </mat-expansion-panel>
+      }
+    </mat-accordion>
+  }
+</div>

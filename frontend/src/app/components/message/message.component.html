@@ -1,0 +1,52 @@
+<!-- Mensaje del usuario -->
+@if (message.type === 'user') {
+  <div class="msg-row user">
+    <div class="bubble user-bubble">
+      <p class="text">{{ message.text }}</p>
+      <span class="ts">{{ message.timestamp | date:'HH:mm' }}</span>
+    </div>
+    <div class="user-avatar">{{ userInitial }}</div>
+  </div>
+}
+
+<!-- Mensaje del asistente -->
+@if (message.type === 'assistant') {
+  <div class="msg-row assistant">
+    <div class="asst-avatar">
+      <img src="favicon.png" alt="CoreVital"
+           style="width: 20px; height: 20px; object-fit: contain;"
+           onerror="this.style.display='none'" />
+    </div>
+    <div class="asst-content">
+      <div class="bubble asst-bubble">
+        <p class="text">{{ message.text }}</p>
+
+        @if (message.sources && message.sources.length > 0) {
+          <div class="meta">
+            <span class="time-badge">{{ message.response_time_ms }}ms</span>
+            <button class="refs-toggle" (click)="showSources = !showSources">
+              <mat-icon>{{ showSources ? 'expand_less' : 'expand_more' }}</mat-icon>
+              {{ message.sources.length }} fuente(s)
+            </button>
+          </div>
+
+          @if (showSources) {
+            <div class="references">
+              @for (src of message.sources; track $index) {
+                <div class="reference-item">
+                  <mat-icon>description</mat-icon>
+                  <div>
+                    <strong>{{ src.filename }}</strong>
+                    <span class="ref-cat">{{ src.category }} · fragmento #{{ src.chunk_index }}</span>
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        }
+
+        <span class="ts">{{ message.timestamp | date:'HH:mm' }}</span>
+      </div>
+    </div>
+  </div>
+}

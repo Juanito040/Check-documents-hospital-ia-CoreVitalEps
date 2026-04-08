@@ -1,0 +1,33 @@
+<div class="dialog-header">
+  <div>
+    <h2>Detalles del documento</h2>
+    <p>{{ document.nombre_archivo }}</p>
+  </div>
+  <button class="close-btn" (click)="dialogRef.close()">✕</button>
+</div>
+
+<mat-dialog-content>
+  <div class="detail-row">
+    <span class="label">Categoría</span>
+    <span class="type-badge">{{ document.categoria }}</span>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="detail-row">
+    <span class="label">Fragmentos</span>
+    <span class="value">{{ document.num_chunks }}</span>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="detail-row">
+    <span class="label">Estado</span>
+    <span class="status-badge">{{ document.estado }}</span>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="detail-row">
+    <span class="label">Fecha de carga</span>
+    <span class="value">{{ document.fecha_carga | date:'dd/MM/yyyy · HH:mm' }}</span>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button class="btn-close" (click)="dialogRef.close()">Cerrar</button>
+</mat-dialog-actions>

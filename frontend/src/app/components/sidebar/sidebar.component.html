@@ -1,0 +1,30 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    [opened]="opened"
+    mode="over"
+    (closedStart)="closeSidebar.emit()"
+    class="sidenav"
+  >
+    <div class="sidenav-header">
+      <span class="sidenav-title">Menú</span>
+    </div>
+
+    <mat-nav-list>
+      @for (item of visibleItems; track item.route) {
+        <a
+          mat-list-item
+          [routerLink]="item.route"
+          routerLinkActive="active-link"
+          (click)="closeSidebar.emit()"
+        >
+          <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+          <span matListItemTitle>{{ item.label }}</span>
+        </a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

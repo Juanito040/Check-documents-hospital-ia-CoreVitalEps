@@ -1,0 +1,10 @@
+<div class="toast-stack">
+  @for (t of toasts; track t.id) {
+    <div class="toast" [class]="'toast-' + t.type" [class.removing]="t.removing">
+      <div class="toast-content">
+        <span class="toast-message">{{ t.message }}</span>
+      </div>
+      <button class="toast-close" (click)="remove(t.id)">✕</button>
+    </div>
+  }
+</div>

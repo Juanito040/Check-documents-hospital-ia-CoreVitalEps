@@ -1,0 +1,18 @@
+<div class="confirm-wrapper">
+  <div class="confirm-header">
+    <h2 class="title">{{ data.title }}</h2>
+    <button class="close-btn" (click)="cancel()">✕</button>
+  </div>
+
+  <p class="message">{{ data.message }}</p>
+  <p class="detail" *ngIf="data.detail">{{ data.detail }}</p>
+
+  <div class="actions">
+    <button class="btn-cancel" (click)="cancel()">
+      {{ data.cancelLabel ?? 'Cancelar' }}
+    </button>
+    <button class="btn-confirm" [class]="data.type ?? 'danger'" (click)="confirm()">
+      {{ data.confirmLabel ?? 'Confirmar' }}
+    </button>
+  </div>
+</div>

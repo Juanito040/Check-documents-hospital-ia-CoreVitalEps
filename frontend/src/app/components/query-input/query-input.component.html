@@ -1,0 +1,26 @@
+<div class="input-wrapper">
+  <div class="input-box">
+    <textarea
+      [(ngModel)]="question"
+      (keydown)="onKeydown($event)"
+      [disabled]="loading"
+      placeholder="Describe tu consulta médica..."
+      rows="1"
+      class="chat-textarea"
+    ></textarea>
+    <button
+      class="send-btn"
+      (click)="onSubmit()"
+      [disabled]="!question.trim() || loading"
+    >
+      @if (loading) {
+        <mat-spinner diameter="20"></mat-spinner>
+      } @else {
+        <mat-icon>send</mat-icon>
+      }
+    </button>
+  </div>
+  <p class="disclaimer">
+    Las respuestas se generan con IA a partir de documentos institucionales de CoreVital.
+  </p>
+</div>

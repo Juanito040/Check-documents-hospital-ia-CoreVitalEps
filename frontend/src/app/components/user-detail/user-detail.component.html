@@ -1,0 +1,42 @@
+<div class="dialog-header">
+  <div>
+    <h2>Detalles del usuario</h2>
+    <p>{{ user.email }}</p>
+  </div>
+  <button class="close-btn" (click)="dialogRef.close()">✕</button>
+</div>
+
+<mat-dialog-content>
+  <div class="detail-row">
+    <span class="label">Nombre</span>
+    <span class="value">{{ user.nombre }}</span>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="detail-row">
+    <span class="label">Correo</span>
+    <span class="value muted">{{ user.email }}</span>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="detail-row">
+    <span class="label">Rol</span>
+    <span class="role-badge"
+          [class.admin]="user.rol === 'admin'"
+          [class.enfermero]="user.rol === 'enfermero'">
+      {{ user.rol === 'admin' ? 'Administrador' : user.rol === 'enfermero' ? 'Enfermero' : 'Médico' }}
+    </span>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="detail-row">
+    <span class="label">Estado</span>
+    <span class="status-badge" [class.inactive]="!user.activo">
+      {{ user.activo ? 'Activo' : 'Inactivo' }}
+    </span>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button class="btn-close" (click)="dialogRef.close()">Cerrar</button>
+</mat-dialog-actions>

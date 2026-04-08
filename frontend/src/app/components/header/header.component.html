@@ -1,0 +1,43 @@
+<mat-toolbar color="primary" class="header-toolbar">
+  <button mat-icon-button (click)="menuToggle.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <mat-icon class="logo-icon">local_hospital</mat-icon>
+  <span class="app-title">{{ title }}</span>
+
+  <span class="spacer"></span>
+
+  @if (isAdmin) {
+    <button mat-button [matMenuTriggerFor]="adminMenu">
+      <mat-icon>admin_panel_settings</mat-icon>
+      Administración
+    </button>
+    <mat-menu #adminMenu="matMenu">
+      <button mat-menu-item routerLink="/admin/documents">
+        <mat-icon>description</mat-icon> Documentos
+      </button>
+      <button mat-menu-item routerLink="/admin/users">
+        <mat-icon>group</mat-icon> Usuarios
+      </button>
+    </mat-menu>
+  }
+
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+  <mat-menu #userMenu="matMenu">
+    <div class="user-header">
+      <p class="user-name">{{ currentUser?.nombre }}</p>
+      <p class="user-role">{{ currentUser?.rol === 'admin' ? 'Administrador' : 'Médico' }}</p>
+    </div>
+    <mat-divider></mat-divider>
+    <button mat-menu-item routerLink="/dashboard">
+      <mat-icon>home</mat-icon> Inicio
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon> Cerrar sesión
+    </button>
+  </mat-menu>
+</mat-toolbar>

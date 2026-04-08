@@ -1,0 +1,135 @@
+<div class="workspace">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+
+    <div class="sidebar-brand">
+      <img class="sidebar-logo" src="logo.png" alt="CoreVital"
+           onerror="this.style.display='none'" />
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <!-- Botón nueva consulta -->
+      <button class="nav-item new-chat-btn"
+              [disabled]="!canOpenMore"
+              (click)="openNewChat()">
+        <mat-icon>add</mat-icon>
+        <span>Nueva consulta</span>
+        @if (!canOpenMore) {
+          <span class="max-badge">3/3</span>
+        }
+      </button>
+
+      <!-- Lista de ventanas abiertas -->
+      @if (chatWindows.length > 0) {
+        <div class="windows-list">
+          @for (win of chatWindows; track win.id) {
+            <button class="nav-item window-item"
+                    [class.active]="activeView === 'chat'"
+                    (click)="activeView = 'chat'">
+              <mat-icon>chat_bubble_outline</mat-icon>
+              <span class="window-title">{{ win.title }}</span>
+              <button class="close-win-btn" (click)="$event.stopPropagation(); closeChat(win.id)">
+                <mat-icon>close</mat-icon>
+              </button>
+            </button>
+          }
+        </div>
+      }
+
+      <button class="nav-item" [class.active]="activeView === 'history'" (click)="activeView = 'history'">
+        <mat-icon>search_activity</mat-icon>
+        <span>Historial</span>
+      </button>
+
+      @if (isAdmin) {
+        <div class="nav-divider"></div>
+        <button class="nav-item" routerLink="/admin/documents">
+          <mat-icon>density_medium</mat-icon>
+          <span>Documentos</span>
+        </button>
+        <button class="nav-item" routerLink="/admin/users">
+          <mat-icon>person_text</mat-icon>
+          <span>Usuarios</span>
+        </button>
+      }
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-row">
+        <div class="user-avatar">
+          {{ currentUser?.nombre?.trim()?.charAt(0)?.toUpperCase() || '?' }}
+        </div>
+        <div class="user-text">
+          <p class="user-name">{{ currentUser?.nombre }}</p>
+          <p class="user-role">{{ currentUser?.rol === 'admin' ? 'Administrador' : currentUser?.rol === 'enfermero' ? 'Enfermero' : 'Médico' }}</p>
+        </div>
+        <button class="logout-btn" (click)="logout()" title="Cerrar sesión">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ===== ÁREA PRINCIPAL ===== -->
+  <div class="main-area">
+
+    <header class="top-header">
+      <h2>{{ activeView === 'chat' ? 'Asistente Virtual' : 'Historial' }}</h2>
+      @if (activeView === 'chat' && canOpenMore && chatWindows.length > 0) {
+        <button class="add-window-btn" (click)="openNewChat()" title="Abrir nueva consulta">
+          <mat-icon>add</mat-icon>
+          Nueva consulta
+        </button>
+      }
+    </header>
+
+    <div class="content">
+
+      <!-- Vista chat: múltiples ventanas -->
+      <div class="chat-windows" [hidden]="activeView !== 'chat'">
+
+        @if (chatWindows.length === 0) {
+          <div class="no-windows-state">
+            <p class="no-windows-label">No hay consultas abiertas</p>
+            <button class="open-chat-btn" (click)="openNewChat()">
+              <mat-icon>add</mat-icon>
+              Nueva consulta
+            </button>
+          </div>
+        }
+
+        @for (win of chatWindows; track win.id) {
+          <div class="chat-window" [class.minimized]="win.minimized">
+            <div class="window-titlebar" (click)="win.minimized && toggleMinimize(win.id)">
+              <div class="window-title-row">
+                <span class="window-name">{{ win.title }}</span>
+              </div>
+              <div class="window-actions">
+                <button class="window-action-btn"
+                        (click)="$event.stopPropagation(); toggleMinimize(win.id)"
+                        [title]="win.minimized ? 'Restaurar' : 'Minimizar'">
+                  <mat-icon>{{ win.minimized ? 'open_in_full' : 'remove' }}</mat-icon>
+                </button>
+                <button class="window-close-btn"
+                        (click)="$event.stopPropagation(); closeChat(win.id)"
+                        title="Cerrar">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </div>
+            @if (!win.minimized) {
+              <app-chat-interface class="window-chat" [windowId]="win.id"></app-chat-interface>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Vista historial -->
+      <app-history [hidden]="activeView !== 'history'"></app-history>
+
+    </div>
+  </div>
+</div>

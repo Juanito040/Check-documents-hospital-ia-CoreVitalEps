@@ -1,0 +1,139 @@
+/* =============================================
+   ESTILOS GLOBALES - CoreVital IA
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap');
+
+/* === Variables === */
+:root {
+  --color-primary:   #00429f;
+  --color-primary-hover: #0057ce;
+  --color-danger:    #dc2626;
+  --color-success:   #166534;
+
+  --bg-page:         #f7f9fb;
+  --bg-surface:      #ffffff;
+  --bg-subtle:       #f3f4f6;
+
+  --border:          #e5e7eb;
+  --border-soft:     #f3f4f6;
+
+  --text-primary:    #111827;
+  --text-secondary:  #4b5563;
+  --text-muted:      #9ca3af;
+
+  --shadow-sm:       0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:       0 4px 16px rgba(0,0,0,0.08);
+
+  --radius:          8px;
+  --radius-lg:       12px;
+}
+
+/* === Base === */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+
+/* === Scrollbar === */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+/* === Utilidades === */
+.full-width  { width: 100%; }
+.spacer      { flex: 1 1 auto; }
+.text-center { text-align: center; }
+.mt-8  { margin-top: 8px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+.mb-8  { margin-bottom: 8px; }
+.mb-16 { margin-bottom: 16px; }
+
+/* === Material — reset al tema claro === */
+mat-card {
+  border-radius: var(--radius-lg) !important;
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-sm) !important;
+  color: var(--text-primary) !important;
+}
+
+.mat-mdc-table {
+  width: 100%;
+  background: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+}
+
+.mat-mdc-header-row {
+  background: var(--bg-subtle) !important;
+}
+
+.mat-mdc-header-cell {
+  color: var(--text-secondary) !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border) !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+}
+
+.mat-mdc-cell {
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-soft) !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+}
+
+.mat-mdc-row:hover {
+  background: var(--bg-subtle) !important;
+}
+
+/* === Dialogs === */
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-color: #ffffff !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+/* === Form fields === */
+.mat-mdc-form-field-focus-overlay { background: rgba(0,66,159,0.05) !important; }
+
+/* === Tabs === */
+.mat-mdc-tab-body-content { overflow: hidden !important; }
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .content { padding: 16px !important; }
+  .mat-mdc-table { font-size: 0.85rem; }
+  .hide-mobile { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  .content { padding: 8px !important; }
+  mat-card { border-radius: 8px !important; }
+  .mat-mdc-dialog-container { margin: 8px; }
+  .hide-small { display: none !important; }
+}
+
+/* === Animaciones === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in    { animation: fadeIn 0.2s ease-out; }
+.fade-in-up { animation: fadeInUp 0.3s ease-out; }

@@ -1,0 +1,307 @@
+/* CoreVital — Register (mismo diseño que Login) */
+
+.login-root {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Panel izquierdo ── */
+.brand-panel {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px 48px 48px;
+  background: #0d59c3;
+  color: #fff;
+  width: 420px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 900px) {
+  .brand-panel { display: flex; }
+}
+
+.brand-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  margin-top: 0;
+}
+
+.brand-logo {
+  width: 190px;
+  height: auto;
+  position: relative;
+  left: 50px;
+} 
+
+.brand-logo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+.brand-logo mat-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+}
+
+.brand-panel h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.brand-headline {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.45;
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 600;
+  text-align: justify;
+}
+
+.brand-sub {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Inter', system-ui, sans-serif;
+  text-align: justify;
+}
+
+.brand-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.brand-features span {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: 'Inter', system-ui, sans-serif;
+  padding-left: 12px;
+  border-left: 2px solid rgba(255, 255, 255, 0.25);
+  line-height: 1.4;
+}
+
+.brand-footer {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.04em;
+}
+
+/* ── Panel derecho ── */
+.form-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/HospiFondo.jpg') center / cover no-repeat;
+  filter: blur(6px) brightness(0.98);
+  transform: scale(1.05);
+  z-index: 0;
+}
+
+.form-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.72);
+  z-index: 1;
+}
+
+.form-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Encabezado ── */
+.form-header {
+  margin-bottom: 28px;
+}
+
+.form-header h2 {
+  margin: 0 0 6px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  letter-spacing: -0.01em;
+}
+
+.form-header p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* ── Campos ── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+
+.field-group label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.field-group input,
+.password-wrap input {
+  width: 100%;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 0.9rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
+}
+
+.field-group input::placeholder,
+.password-wrap input::placeholder {
+  color: #9ca3af;
+}
+
+.field-group input:focus,
+.password-wrap input:focus {
+  border-color: #0d59c3;
+  box-shadow: 0 0 0 3px rgba(13, 89, 195, 0.08);
+}
+
+.field-error {
+  font-size: 0.75rem;
+  color: #dc2626;
+  margin-top: 2px;
+}
+
+/* ── Password toggle ── */
+.password-wrap {
+  position: relative;
+}
+
+.password-wrap input {
+  padding-right: 44px;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+
+.eye-btn:hover { color: #374151; }
+.eye-btn mat-icon { font-size: 18px; width: 18px; height: 18px; }
+
+/* ── Mensajes ── */
+.error-msg {
+  font-size: 0.82rem;
+  color: #dc2626;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 9px 12px;
+  margin-bottom: 14px;
+}
+
+.success-msg {
+  font-size: 0.82rem;
+  color: #166534;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 6px;
+  padding: 9px 12px;
+  margin-bottom: 14px;
+}
+
+/* ── Botón ── */
+.submit-btn {
+  width: 100%;
+  height: 42px;
+  background: #0d59c3;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  transition: background 0.15s;
+}
+
+.submit-btn:hover:not([disabled]) { background: #0b3677; }
+
+.submit-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Link login ── */
+.register-link {
+  margin: 20px 0 0;
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+.register-link a {
+  color: #0d59c3;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.register-link a:hover { text-decoration: underline; }

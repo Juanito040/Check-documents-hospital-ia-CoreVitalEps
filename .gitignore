@@ -1,0 +1,71 @@
+# =====================================================================
+# .gitignore raíz del proyecto
+# =====================================================================
+
+# Archivos de entorno — NUNCA subir al repositorio
+.env
+*.env
+!.env.example
+
+# Archivos de trabajo internos
+WHERE.txt
+CHECKLIST_PROYECTO.txt
+Claude skills/
+docs/
+
+# Guías y documentación (no van al repositorio público)
+GUIA_DESPLIEGUE_SERVIDOR.md
+RESUMEN_BACKEND.md
+backend/INSTALACION.md
+frontend/README.md
+
+# Documentos binarios (pueden contener info institucional sensible)
+*.docx
+*.pdf
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Backend ──────────────────────────────────────────────────────────
+backend/__pycache__/
+backend/**/__pycache__/
+backend/*.py[cod]
+backend/venv/
+backend/env/
+backend/.venv/
+
+# Datos y base de datos (pueden contener datos reales de pacientes)
+backend/data/
+backend/logs/
+backend/*.db
+backend/*.sqlite
+backend/*.sqlite3
+backend/chromadb/
+backend/documents/
+
+# Tests
+backend/.pytest_cache/
+backend/.coverage
+backend/htmlcov/
+backend/.mypy_cache/
+
+# Alembic (versiones generadas localmente)
+backend/alembic/versions/*.pyc
+
+# ── Frontend ─────────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/cache/
+frontend/tmp/
+frontend/out-tsc/
+frontend/coverage/
+frontend/.sass-cache/
+frontend/*.log

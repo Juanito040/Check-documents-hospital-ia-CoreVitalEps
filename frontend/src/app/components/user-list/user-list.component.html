@@ -1,0 +1,91 @@
+<div class="page-container">
+
+  <div class="page-header">
+    <div>
+      <h1>Usuarios</h1>
+      <p>{{ users.length }} usuario{{ users.length !== 1 ? 's' : '' }} registrado{{ users.length !== 1 ? 's' : '' }}</p>
+    </div>
+    <button class="btn-primary" (click)="openCreate()">+ Nuevo usuario</button>
+  </div>
+
+  <div class="content">
+    @if (loading) {
+      <div class="loading"><mat-spinner diameter="36"></mat-spinner></div>
+    } @else if (users.length === 0) {
+      <div class="empty-state"><p>No hay usuarios registrados aún.</p></div>
+    } @else {
+      <div class="table-wrapper">
+        <table mat-table [dataSource]="users" class="full-width">
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let u">
+              <div class="user-cell">
+                <div class="user-initials">{{ u.nombre.charAt(0).toUpperCase() }}</div>
+                <span>{{ u.nombre }}</span>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Correo</th>
+            <td mat-cell *matCellDef="let u" class="text-muted">{{ u.email }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="rol">
+            <th mat-header-cell *matHeaderCellDef>Rol</th>
+            <td mat-cell *matCellDef="let u">
+              <span class="role-badge"
+                    [class.admin]="u.rol === 'admin'"
+                    [class.enfermero]="u.rol === 'enfermero'">
+                {{ u.rol === 'admin' ? 'Admin' : u.rol === 'enfermero' ? 'Enfermero' : 'Médico' }}
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Activo</th>
+            <td mat-cell *matCellDef="let u">
+              <mat-slide-toggle
+                [checked]="u.activo"
+                [disabled]="isCurrentUser(u)"
+                [matTooltip]="isCurrentUser(u) ? 'No puedes desactivar tu propia cuenta' : ''"
+                (change)="toggleActive(u)"
+                color="primary">
+              </mat-slide-toggle>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let u">
+              <button class="menu-trigger" [matMenuTriggerFor]="actionsMenu">
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+              <mat-menu #actionsMenu="matMenu" xPosition="before">
+                <button mat-menu-item (click)="openDetail(u)">
+                  <mat-icon>info_outline</mat-icon>
+                  <span>Ver detalles</span>
+                </button>
+                <button mat-menu-item (click)="openEdit(u)">
+                  <mat-icon>edit</mat-icon>
+                  <span>Editar</span>
+                </button>
+                <button mat-menu-item class="menu-danger"
+                  [disabled]="isCurrentUser(u)"
+                  (click)="deleteUser(u)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Eliminar</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    }
+  </div>
+
+</div>

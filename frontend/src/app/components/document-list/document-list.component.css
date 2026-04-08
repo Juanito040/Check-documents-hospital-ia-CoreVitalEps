@@ -1,0 +1,203 @@
+/* CoreVital — Documentos */
+
+.page-container {
+  min-height: 100vh;
+  background: #f7f9fb;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Header ── */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 32px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.page-header h1 {
+  margin: 0 0 2px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.page-header p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+/* ── Contenido ── */
+.content {
+  padding: 24px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-label {
+  margin: 0 0 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Upload ── */
+.upload-section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px 24px;
+}
+
+/* ── Tabla ── */
+.table-section { display: flex; flex-direction: column; }
+
+.table-wrapper {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.full-width { width: 100%; }
+
+::ng-deep .mat-mdc-table {
+  background: transparent !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+}
+
+::ng-deep .mat-mdc-header-row { background: #f9fafb !important; }
+
+::ng-deep .mat-mdc-header-cell {
+  color: #6b7280 !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #e5e7eb !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  padding: 12px 16px !important;
+}
+
+::ng-deep .mat-mdc-cell {
+  color: #111827 !important;
+  font-size: 0.875rem !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  padding: 14px 16px !important;
+}
+
+::ng-deep .mat-mdc-row:last-child .mat-mdc-cell { border-bottom: none !important; }
+::ng-deep .mat-mdc-row:hover { background: #f9fafb !important; }
+
+/* Proporciones */
+::ng-deep .mat-column-nombre_archivo { width: auto; }
+::ng-deep .mat-column-categoria     { width: 1%; white-space: nowrap; }
+::ng-deep .mat-column-num_chunks    { width: 1%; white-space: nowrap; }
+::ng-deep .mat-column-fecha_carga   { width: 1%; white-space: nowrap; }
+::ng-deep .mat-column-actions       { width: 48px; }
+
+/* ── Celda nombre ── */
+.file-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.file-ext {
+  flex-shrink: 0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: #fee2e2;
+  color: #991b1b;
+  letter-spacing: 0.03em;
+}
+
+.file-name {
+  font-size: 0.85rem;
+  color: #111827;
+  word-break: break-word;
+}
+
+.text-muted { color: #6b7280 !important; font-size: 0.82rem !important; }
+
+/* ── Badges categoría ── */
+.cat-badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 5px;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.cat-protocolo      { background: #eff6ff; color: #1d4ed8; }
+.cat-normativa      { background: #fef3c7; color: #92400e; }
+.cat-historia_clinica { background: #f0fdf4; color: #166534; }
+
+/* ── Menú acciones ── */
+.menu-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 5px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.menu-trigger:hover { background: #f3f4f6; color: #374151; }
+.menu-trigger mat-icon { font-size: 18px; width: 18px; height: 18px; }
+
+::ng-deep .mat-mdc-menu-panel {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1) !important;
+  border: 1px solid #e5e7eb !important;
+  min-width: 160px !important;
+}
+
+::ng-deep .mat-mdc-menu-item {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 0.85rem !important;
+  color: #374151 !important;
+  height: 40px !important;
+}
+
+::ng-deep .mat-mdc-menu-item mat-icon {
+  font-size: 16px !important;
+  width: 16px !important;
+  height: 16px !important;
+  color: #6b7280 !important;
+  margin-right: 10px !important;
+}
+
+::ng-deep .mat-mdc-menu-item:hover { background: #f9fafb !important; }
+::ng-deep .mat-mdc-menu-item.menu-danger { color: #dc2626 !important; }
+::ng-deep .mat-mdc-menu-item.menu-danger mat-icon { color: #dc2626 !important; }
+::ng-deep .mat-mdc-menu-item.menu-danger:hover { background: #fef2f2 !important; }
+
+/* ── Estados ── */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+}
+
+.empty-state {
+  padding: 48px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.875rem;
+}

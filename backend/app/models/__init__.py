@@ -1,0 +1,8 @@
+"""
+Modelos de base de datos
+"""
+from app.models.user import User
+from app.models.document import Document
+from app.models.query_log import QueryLog
+
+__all__ = ["User", "Document", "QueryLog"]

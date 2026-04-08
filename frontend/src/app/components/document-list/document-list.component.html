@@ -1,0 +1,83 @@
+<div class="page-container">
+
+  <div class="page-header">
+    <div>
+      <h1>Documentos</h1>
+      <p>{{ documents.length }} documento{{ documents.length !== 1 ? 's' : '' }} cargado{{ documents.length !== 1 ? 's' : '' }}</p>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- Zona de carga -->
+    <div class="upload-section">
+      <p class="section-label">Cargar nuevo documento</p>
+      <app-document-upload (uploaded)="loadDocuments()"></app-document-upload>
+    </div>
+
+    <!-- Tabla -->
+    <div class="table-section">
+      <p class="section-label">Documentos cargados</p>
+      <div class="table-wrapper">
+        @if (loading) {
+          <div class="loading"><mat-spinner diameter="36"></mat-spinner></div>
+        } @else if (documents.length === 0) {
+          <div class="empty-state"><p>No hay documentos cargados aún.</p></div>
+        } @else {
+          <table mat-table [dataSource]="documents" class="full-width">
+
+            <ng-container matColumnDef="nombre_archivo">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let doc">
+                <div class="file-cell">
+                  <span class="file-ext">{{ doc.nombre_archivo.split('.').pop()?.toUpperCase() }}</span>
+                  <span class="file-name">{{ doc.nombre_archivo }}</span>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="categoria">
+              <th mat-header-cell *matHeaderCellDef>Categoría</th>
+              <td mat-cell *matCellDef="let doc">
+                <span class="cat-badge cat-{{ doc.categoria }}">{{ getCategoriaLabel(doc.categoria) }}</span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="num_chunks">
+              <th mat-header-cell *matHeaderCellDef>Fragmentos</th>
+              <td mat-cell *matCellDef="let doc" class="text-muted">{{ doc.num_chunks }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="fecha_carga">
+              <th mat-header-cell *matHeaderCellDef>Fecha</th>
+              <td mat-cell *matCellDef="let doc" class="text-muted">{{ doc.fecha_carga | date:'dd/MM/yyyy' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let doc">
+                <button class="menu-trigger" [matMenuTriggerFor]="docMenu">
+                  <mat-icon>more_horiz</mat-icon>
+                </button>
+                <mat-menu #docMenu="matMenu" xPosition="before">
+                  <button mat-menu-item (click)="openDetail(doc)">
+                    <mat-icon>info_outline</mat-icon>
+                    <span>Ver detalles</span>
+                  </button>
+                  <button mat-menu-item class="menu-danger" (click)="deleteDocument(doc)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Eliminar</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        }
+      </div>
+    </div>
+
+  </div>
+</div>

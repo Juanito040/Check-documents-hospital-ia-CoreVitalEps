@@ -1,0 +1,30 @@
+<div class="upload-wrapper">
+
+  <div class="field-group">
+    <label for="categoria">Categoría</label>
+    <select id="categoria" [(ngModel)]="categoria">
+      @for (c of categorias; track c.value) {
+        <option [value]="c.value">{{ c.label }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="drop-zone" [class.drag-over]="dragOver" [class.uploading]="uploading"
+    (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave()">
+
+    @if (uploading) {
+      <div class="upload-progress">
+        <div class="progress-bar-track"><div class="progress-bar-fill"></div></div>
+        <p>Procesando documento...</p>
+      </div>
+    } @else {
+      <p class="drop-label">Arrastra un archivo aquí o</p>
+      <button class="select-btn" type="button" (click)="fileInput.click()">
+        Seleccionar archivo
+      </button>
+      <p class="hint">PDF o DOCX &middot; Máximo recomendado: 50 MB</p>
+      <input #fileInput type="file" accept=".pdf,.docx" hidden (change)="onFileSelected($event)" />
+    }
+
+  </div>
+</div>
